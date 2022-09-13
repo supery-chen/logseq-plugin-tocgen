@@ -1,9 +1,9 @@
 {
-  "name": "logseq-plugin-tocgen",
+  "name": "logseq-plugin-tocgen-superychen",
   "version": "1.18.1",
   "main": "dist/index.html",
   "logseq": {
-    "id": "_sethyuan-logseq-tocgen",
+    "id": "superychen-logseq-tocgen",
     "icon": "./icon.png"
   },
   "scripts": {

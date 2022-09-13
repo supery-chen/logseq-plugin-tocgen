@@ -1,5 +1,6 @@
 import { t } from "logseq-l10n"
 import { useEffect, useMemo, useRef, useState } from "preact/hooks"
+import { none } from "rambdax"
 import { cls } from "reactutils"
 import { HeadingTypes, isHeading, parseContent } from "../utils.js"
 import Arrow from "./Arrow.jsx"
@@ -14,6 +15,24 @@ export default function Block({
   collapsed,
   onCollapseChange,
 }) {
+  console.log("block", block)
+  const blockContent = block.content
+  let hn = ""
+  if (blockContent.startsWith("# ")) {
+    hn = "h1"
+  } else if (blockContent.startsWith("## ")) {
+    hn = "h2"
+  } else if (blockContent.startsWith("### ")) {
+    hn = "h3"
+  } else if (blockContent.startsWith("#### ")) {
+    hn = "h4"
+  } else if (blockContent.startsWith("##### ")) {
+    hn = "h5"
+  } else if (blockContent.startsWith("###### ")) {
+    hn = "h6"
+  }
+  console.log("hn", hn)
+
   const [content, setContent] = useState("")
   const [childrenCollapsed, setChildrenCollapsed] = useState(
     () =>
@@ -132,7 +151,7 @@ export default function Block({
       ? block.children.some((subblock) => isHeading(subblock))
       : block.children.filter((subblock) => subblock.properties?.toc !== "no")
           .length > 0)
-
+  hn = "kef-tocgen-into inline " + hn
   return (
     <>
       <div
@@ -152,7 +171,7 @@ export default function Block({
           />
         </button>
         <span
-          class="kef-tocgen-into inline"
+          class={hn}
           data-ref={block.uuid}
           onClick={goInto}
           dangerouslySetInnerHTML={{ __html: content }}

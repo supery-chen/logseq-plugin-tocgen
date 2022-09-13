@@ -64,6 +64,24 @@ async function main() {
   })
 
   logseq.provideStyle(`
+    .h1 {
+      margin-left: -15px
+    }
+    .h2 {
+      margin-left: 0px
+    }
+    .h3 {
+      margin-left: 15px
+    }
+    .h4 {
+      margin-left: 30px
+    }
+    .h5 {
+      margin-left: 45px
+    }
+    .h6 {
+      margin-left: 60px
+    }
     .kef-tocgen-page {
       line-height: 2;
     }
